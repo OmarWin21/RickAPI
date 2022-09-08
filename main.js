@@ -1,13 +1,28 @@
-function fRickMorty(id) {
-    fetch(`https://rickandmortyapi.com/api/character/${id}/`)
+const  rmCreator = document.querySelector(".RM-container");
+
+function fRickMorty() {
+    fetch('https://rickandmortyapi.com/api/character')
     .then((resp)=> resp.json())
-    .then((data)=> console.log(data));
+    .then((data)=> {
+        for (let i = 0; i < data.results.length; i++){
+            console.log({
+                image: data.results[i].image,
+                id: data.results[i].id,
+                name: data.results[i].name,
+                gender: data.results[i].gender,
+                status: data.results[i].status
+            })
+        }
+    });
 }
+fRickMorty();
 
-function fCharacters(idNumber){
-    for (var i = 1; i <= idNumber; i++){
-        fRickMorty(i);
-    }
-}
+// function rmCardCreator (character){
+//     const imgContainer = document.createElement('div');
+//     imgContainer.classList.add('img-container');
 
-fCharacters(20);
+//     const image = document.createElement('img');
+//     image.src = data.results.image;
+
+//     imgContainer.
+// }
