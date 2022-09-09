@@ -5,24 +5,27 @@ function fRickMorty() {
     .then((resp)=> resp.json())
     .then((data)=> {
         for (let i = 0; i < data.results.length; i++){
-            console.log({
+            let apiData ={
                 image: data.results[i].image,
                 id: data.results[i].id,
                 name: data.results[i].name,
                 gender: data.results[i].gender,
                 status: data.results[i].status
-            })
+            }
+            rmCardCreator(apiData); 
         }
     });
 }
+
+function rmCardCreator(apiData){
+    const imgContainer = document.createElement('div');
+    imgContainer.classList.add('img-container');
+
+    const image = document.createElement('img');
+    image.src = `${apiData.image}`;
+
+    imgContainer.appendChild(image);
+    rmCreator.appendChild(imgContainer);
+}
 fRickMorty();
-
-// function rmCardCreator (character){
-//     const imgContainer = document.createElement('div');
-//     imgContainer.classList.add('img-container');
-
-//     const image = document.createElement('img');
-//     image.src = data.results.image;
-
-//     imgContainer.
-// }
+uk
