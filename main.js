@@ -24,8 +24,19 @@ function rmCardCreator(apiData){
     const image = document.createElement('img');
     image.src = `${apiData.image}`;
 
+    const id = document.createElement('p');
+    id.textContent = `${apiData.id.toString()}`
+
+    const name = document.createElement('p');
+    name.textContent = `${apiData.name}`;
+
+    const status = document.createElement('p');
+    status.textContent = `${apiData.status}`;
+
     imgContainer.appendChild(image);
+    imgContainer.appendChild(id);
+    imgContainer.appendChild(name);
+    imgContainer.appendChild(status);
     rmCreator.appendChild(imgContainer);
 }
 fRickMorty();
-uk
