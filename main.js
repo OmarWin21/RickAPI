@@ -16,6 +16,14 @@ function fRickMorty() {
         }
     });
 }
+function rmPagination(pg){
+    fetch(`https://rickandmortyapi.com/api/character?page=${pg}`)
+    .then((res)=> res.json())
+    .then((pages) => console.log(pages));
+}
+
+rmPagination(5);
+
 
 function rmCardCreator(apiData){
     const imgContainer = document.createElement('div');
