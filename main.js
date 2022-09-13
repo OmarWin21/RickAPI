@@ -1,28 +1,27 @@
 const  rmCreator = document.querySelector(".RM-container");
 
-function fRickMorty() {
-    fetch('https://rickandmortyapi.com/api/character')
-    .then((resp)=> resp.json())
-    .then((data)=> {
-        for (let i = 0; i < data.results.length; i++){
+function fRickMorty(data) {
+        for (let i = 0; i < data.length; i++){
             let apiData ={
-                image: data.results[i].image,
-                id: data.results[i].id,
-                name: data.results[i].name,
-                gender: data.results[i].gender,
-                status: data.results[i].status
+                image: data[i].image,
+                id: data[i].id,
+                name: data[i].name,
+                gender: data[i].gender,
+                status: data[i].status
             }
-            rmCardCreator(apiData); 
-        }
-    });
+            rmCardCreator(apiData) 
+    }
 }
 function rmPagination(pg){
     fetch(`https://rickandmortyapi.com/api/character?page=${pg}`)
-    .then((res)=> res.json())
-    .then((pages) => console.log(pages));
+    .then(res=> res.json())
+    .then(data => fRickMorty(data.results))
 }
 
-rmPagination(5);
+for (let i = 0; i < 42; i++) {
+    rmPagination(i);
+   
+}
 
 
 function rmCardCreator(apiData){
