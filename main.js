@@ -15,13 +15,14 @@ function rmPagination(pg){
 
 function caller(){
     for (let i = offset; i < offset+limit; i++) {
-        rmPagination(i); 
+        rmPagination(i);
     }
 }
 
 if (offset ===1){
     caller()
 }
+
 
 function remover(){
     for (let i = offset; i< offset+limit; i++){
@@ -30,37 +31,34 @@ function remover(){
     }
 }
 
-nextP.addEventListener('click', function (){
+nextP.addEventListener('click', function (){ 
     remover();
     offset = offset + limit;
+
+    if (offset > 1){
+        document.getElementById('prev').disabled = false;
+    }
+
     caller();
     console.log(offset);
 })
 
 console.log(offset);
 
-function disableB(offset){
-    if (offset < 1){
-        document.getElementById('prev').disabled = false;
-    }
-}
-
-disableB(offset)
 
 
 prevP.addEventListener('click', function(){
-    
     remover();
     offset = offset - limit;
+
+    if (offset < 10){
+        document.getElementById('prev').disabled = true;
+    }
     caller()
     console.log(offset);
-    
 })
 
 console.log(offset)
-
-
-
 
 
 function rmCardCreator(apiData){
