@@ -9,8 +9,8 @@ function rmPagination(pg){
     fetch(`https://rickandmortyapi.com/api/character/${pg}`)
     .then(res=> res.json())
       .then(data => 
-        rmCardCreator(data)
-    )
+        { rmCardCreator(data) 
+            console.log(data) })
 }
 
 function caller(){
@@ -23,7 +23,15 @@ if (offset ===1){
     caller()
 }
 
+function remover(){
+    for (let i = offset; i< offset+limit; i++){
+        let idN = i.toString();
+        document.getElementById(idN).remove();
+    }
+}
+
 nextP.addEventListener('click', function (){
+    remover();
     offset = offset + limit;
     caller();
     console.log(offset);
@@ -31,23 +39,34 @@ nextP.addEventListener('click', function (){
 
 console.log(offset);
 
-prevP.addEventListener('click', function(){
-    offset = offset - limit;
-    if(offset<1){
-        offset=1
-        return
+function disableB(offset){
+    if (offset < 1){
+        document.getElementById('prev').disabled = false;
     }
+}
+
+disableB(offset)
+
+
+prevP.addEventListener('click', function(){
+    
+    remover();
+    offset = offset - limit;
     caller()
     console.log(offset);
+    
 })
 
 console.log(offset)
 
 
 
+
+
 function rmCardCreator(apiData){
     const imgContainer = document.createElement('div');
     imgContainer.classList.add('img-container');
+    imgContainer.id = `${apiData.id}`;
 
     const image = document.createElement('img');
     image.src = `${apiData.image}`;
@@ -67,8 +86,3 @@ function rmCardCreator(apiData){
     imgContainer.appendChild(status);
     rmCreator.appendChild(imgContainer);
 }
-
-[1, 2, 4, 5] 1-4
-[1, 2, 4, 5] 2-3
-[1, 2, 4, 5] 3-2
-[1, 2, 4, 5] 4-1
