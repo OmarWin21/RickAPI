@@ -1,6 +1,7 @@
 const  rmCreator = document.querySelector(".RM-container");
 const nextP = document.querySelector(".next");
 const prevP = document.querySelector(".prev");
+const fCreator = document.querySelector(".body");
 
 // const limit = 10;
 // let offset = 1;
@@ -60,6 +61,12 @@ const prevP = document.querySelector(".prev");
 // console.log(offset)
 
 let currentPg = 1;
+let array=[]
+var offset = (20*currentPg) - 19 
+var limit = 20*currentPg
+
+console.log(offset + ' init')
+console.log(limit + ' init')
 
 function rmPg (pg){
     fetch(`https://rickandmortyapi.com/api/character/?page=${pg}`)
@@ -73,25 +80,45 @@ function rmPg (pg){
                 image: data.results[i].image,
                 gender: data.results[i].gender
             }
+            array.push(apiData)
             rmCardCreator(apiData);
         }
     })
 }
+console.log(array);
+
 
 rmPg(1);
 
+
+function remover(){
+    for (let i = offset; i<= limit; i++){
+        let idN = i.toString();
+        document.getElementById(idN).remove();
+    }
+}
+
 nextP.addEventListener('click', function(){
+    remover();
     currentPg = currentPg + 1;
-    console.log(currentPg)
+    offset = (20*currentPg) - 19;
+    limit = limit + 20;
     rmPg(currentPg);
+    console.log(offset + ' next')
+    console.log(limit + ' next')
+
 })
 
 prevP.addEventListener('click', function(){
+    remover();
     currentPg = currentPg - 1;
     console.log(currentPg)
+    offset = (20*currentPg) - 19;
+    limit = limit - 20;
+    rmPg(currentPg);
+    console.log(offset + ' prev')
+    console.log(limit + ' prev')
 })
-
-
 
 
 
@@ -99,7 +126,6 @@ function rmCardCreator(apiData){
     const imgContainer = document.createElement('div');
     imgContainer.classList.add('img-container');
     imgContainer.id = `${apiData.id}`;
-    // imgContainer.id = 'prueba'
 
     const image = document.createElement('img');
     image.src = `${apiData.image}`;
@@ -112,6 +138,7 @@ function rmCardCreator(apiData){
 
     const status = document.createElement('p');
     status.textContent = `${apiData.status}`;
+
 
     imgContainer.appendChild(image);
     imgContainer.appendChild(id);
