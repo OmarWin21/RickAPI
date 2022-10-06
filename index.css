@@ -15,11 +15,18 @@ body{
     background-attachment: fixed;
     background-image: url("./5pr2d6fopii31.jpg");
 }
+
+.main-container{
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+}
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 240px);
+    grid-template-columns: repeat(5, 240px);
     gap: 26px;
     place-content: center;
+    margin-bottom: 50px;
   }
   .product-card {
     width: 240px;
@@ -56,7 +63,7 @@ body{
     margin-bottom: 0;
     color: var(--very-light-pink);
   }
-  @media (max-width: 640px) {
+  @media (max-width: 1140px) {
     .cards-container {
       grid-template-columns: repeat(auto-fill, 140px);
     }
@@ -67,4 +74,26 @@ body{
       width: 140px;
       height: 140px;
     }
+  }
+
+  .button-container{
+    display: flex;
+    justify-content: center;
+  }
+
+  .buttonP{
+    margin-right: 20px;
+    height: 40px;
+    width: 80px;
+    border: solid 2px #8Bcf21;
+    background-color: transparent;
+    color: #8Bcf21;
+    font-size: var(--md);
+    font-weight: bold;
+    border-radius: 4px;
+  }
+  .buttonP:hover{
+    background-color: #8Bcf21;
+    color: #FFFFFF;
+    box-shadow: 0px 0px 8px 2px #8Bcf21;
   }
