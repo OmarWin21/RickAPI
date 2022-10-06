@@ -124,11 +124,16 @@ prevP.addEventListener('click', function(){
 
 function rmCardCreator(apiData){
     const imgContainer = document.createElement('div');
-    imgContainer.classList.add('img-container');
+    imgContainer.classList.add('img-container' , 'product-card');
     imgContainer.id = `${apiData.id}`;
 
     const image = document.createElement('img');
     image.src = `${apiData.image}`;
+
+    const inC = document.createElement('div');
+    inC.classList.add('product-info');
+
+    const inC2 = document.createElement('div');
 
     const id = document.createElement('p');
     id.textContent = `${apiData.id.toString()}`
@@ -137,12 +142,13 @@ function rmCardCreator(apiData){
     name.textContent = `${apiData.name}`;
 
     const status = document.createElement('p');
-    status.textContent = `${apiData.status}`;
+    status.textContent = `${"Status: "+apiData.status}`;
 
 
     imgContainer.appendChild(image);
-    imgContainer.appendChild(id);
-    imgContainer.appendChild(name);
-    imgContainer.appendChild(status);
+    imgContainer.appendChild(inC)
+    inC.appendChild(inC2);
+    inC2.appendChild(name);
+    inC2.appendChild(status);
     rmCreator.appendChild(imgContainer);
 }
