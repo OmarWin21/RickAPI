@@ -103,6 +103,11 @@ nextP.addEventListener('click', function(){
     currentPg = currentPg + 1;
     offset = (20*currentPg) - 19;
     limit = limit + 20;
+
+        if (offset > 1){
+        document.getElementById('prev1').disabled = false;
+    }
+
     rmPg(currentPg);
     console.log(offset + ' next')
     console.log(limit + ' next')
@@ -115,6 +120,11 @@ prevP.addEventListener('click', function(){
     console.log(currentPg)
     offset = (20*currentPg) - 19;
     limit = limit - 20;
+
+    if (offset < 10){
+        document.getElementById('prev1').disabled = true;
+    }
+
     rmPg(currentPg);
     console.log(offset + ' prev')
     console.log(limit + ' prev')
@@ -141,10 +151,10 @@ function rmCardCreator(apiData){
     const name = document.createElement('p');
     name.textContent = `${apiData.name}`;
 
-    const status = document.createElement('p');
+    const status =  document.createElement('p');
     status.textContent = `${"Status: "+apiData.status}`;
 
-
+    
     imgContainer.appendChild(image);
     imgContainer.appendChild(inC)
     inC.appendChild(inC2);
